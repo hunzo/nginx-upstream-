@@ -1,0 +1,16 @@
+version: '3.7'
+services: 
+  nginx-upstream:
+    image: nginx:alpine
+    volumes: 
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports: 
+      - 8080:80
+  app:
+    build: ./app
+    expose: 
+      - 3000
+    depends_on: 
+      - nginx-upstream
+
+    
